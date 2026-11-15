@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View equipment.maintenance.equipment View List -->
+    <record id="view_equipment_maintenance_equipment_list" model="ir.ui.view">
+        <field name="name">view.equipment.maintenance.equipment.list</field>
+        <field name="model">equipment.maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View equipment.maintenance.equipment form -->
+    <record id="view_equipment_maintenance_equipment_form" model="ir.ui.view">
+        <field name="name">view.equipment.maintenance.equipment.form</field>
+        <field name="model">equipment.maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Equipment Maintenance Equipment">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- View equipment.maintenance.equipment search -->
+    <record id="view_equipment_maintenance_equipment_search" model="ir.ui.view">
+        <field name="name">view.equipment.maintenance.equipment.search</field>
+        <field name="model">equipment.maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="1" string="Group By">
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action equipment.maintenance.equipment -->
+    <record id="action_equipment_maintenance_equipment" model="ir.actions.act_window">
+        <field name="name">Equipment Maintenance Equipment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">equipment.maintenance.equipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Equipment Maintenance Equipment.
+            </p>
+        </field>
+    </record>
+
+</odoo>
