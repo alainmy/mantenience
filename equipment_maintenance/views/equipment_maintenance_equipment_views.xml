@@ -8,6 +8,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="code"/>
+                <field name="location"/>
             </list>
         </field>
     </record>
@@ -25,6 +27,14 @@
                             <field name="name" placeholder="Name..."/>
                         </h1>
                     </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="location"/>
+                        </group>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -36,8 +46,12 @@
         <field name="model">equipment.maintenance.equipment</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="location"/>
                 <group expand="1" string="Group By">
                     <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                    <filter string="Location" name="location" domain="[]" context="{'group_by':'location'}"/>
                 </group>
             </search>
         </field>

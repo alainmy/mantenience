@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequence for equipment.maintenance.maintenance -->
+        <record id="sequence_equipment_maintenance_maintenance" model="ir.sequence">
+            <field name="name">Equipment Maintenance Sequence</field>
+            <field name="code">equipment.maintenance.maintenance</field>
+            <field name="prefix">MNT/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

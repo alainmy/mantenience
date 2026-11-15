@@ -11,6 +11,6 @@ class EquipmentMaintenanceEquipment(models.Model):
     _name = 'equipment.maintenance.equipment'
     _description = 'EquipmentMaintenanceEquipment'
 
-    name = fields.Char('Name')
-    code = fields.Char('Code', unique=True)
+    name = fields.Char('Name', required=True)
+    code = fields.Char('Code', unique=True,required=True)
     location = fields.Char('Location')

@@ -7,7 +7,11 @@
         <field name="model">equipment.maintenance.maintenance</field>
         <field name="arch" type="xml">
             <list>
+                <field name="sequence"/>
                 <field name="name"/>
+                <field name="equipment_id"/>
+                <field name="created_by"/>
+                <field name="hours" sum="Total Hours"/>
             </list>
         </field>
     </record>
@@ -25,6 +29,39 @@
                             <field name="name" placeholder="Name..."/>
                         </h1>
                     </div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="equipment_id"/>
+                        </group>
+                        <group>
+                            <field name="created_by"/>
+                            <field name="hours"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tasks" name="tasks">
+                            <field name="task_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="date_task"/>
+                                    <field name="responsible_id"/>
+                                    <field name="hours" sum="Total Hours"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'done'"
+                                           decoration-info="state == 'in_progress'"
+                                           decoration-warning="state == 'draft'"
+                                           decoration-danger="state == 'cancelled'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Description" name="description">
+                            <field name="description" placeholder="Description..."/>
+                        </page>
+                        <page string="Responsible" name="responsible">
+                            <field name="responsible_ids" widget="many2many_tags" readonly="1"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -36,8 +73,14 @@
         <field name="model">equipment.maintenance.maintenance</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name"/>
+                <field name="sequence"/>
+                <field name="equipment_id"/>
+                <field name="created_by"/>
                 <group expand="1" string="Group By">
                     <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                    <filter string="Equipment" name="equipment_id" domain="[]" context="{'group_by':'equipment_id'}"/>
+                    <filter string="Created By" name="created_by" domain="[]" context="{'group_by':'created_by'}"/>
                 </group>
             </search>
         </field>

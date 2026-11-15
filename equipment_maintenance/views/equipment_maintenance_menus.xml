@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu (Application) -->
+    <menuitem id="menu_equipment_maintenance_root"
+              name="Equipment Maintenance"
+              sequence="50"
+              groups="group_equipment_maintenance_user"/>
+
+    <!-- Maintenances -->
+    <menuitem id="menu_equipment_maintenance_maintenance"
+              name="Maintenances"
+              parent="menu_equipment_maintenance_root"
+              action="action_equipment_maintenance_maintenance"
+              sequence="10"/>
+
+    <!-- Tasks -->
+    <menuitem id="menu_equipment_maintenance_task"
+              name="Tasks"
+              parent="menu_equipment_maintenance_root"
+              action="action_equipment_maintenance_task"
+              sequence="20"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_equipment_maintenance_configuration"
+              name="Configuration"
+              parent="menu_equipment_maintenance_root"
+              sequence="90"
+              groups="group_equipment_maintenance_manager"/>
+
+    <menuitem id="menu_equipment_maintenance_equipment"
+              name="Equipment"
+              parent="menu_equipment_maintenance_configuration"
+              action="action_equipment_maintenance_equipment"
+              sequence="10"/>
+
+</odoo>

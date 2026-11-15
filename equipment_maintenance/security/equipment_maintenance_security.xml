@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Module Category -->
+    <record id="module_category_equipment_maintenance" model="ir.module.category">
+        <field name="name">Equipment Maintenance</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- User Group: can manage maintenances and tasks, read-only on equipment -->
+    <record id="group_equipment_maintenance_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_equipment_maintenance"/>
+    </record>
+
+    <!-- Manager Group: full control over equipment, maintenances and tasks -->
+    <record id="group_equipment_maintenance_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_equipment_maintenance"/>
+        <field name="implied_ids" eval="[(4, ref('group_equipment_maintenance_user'))]"/>
+    </record>
+
+</odoo>

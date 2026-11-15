@@ -8,10 +8,13 @@
     'category': '',
     'depends': ['base', 'web'],
     'data': [
-        'views/equipment_maintenance_equipment_views.xml',
+        'security/equipment_maintenance_security.xml',
         'security/ir.model.access.csv',
+        'data/equipment_maintenance_maintenance_sequence.xml',
+        'views/equipment_maintenance_equipment_views.xml',
+        'views/equipment_maintenance_maintenance_views.xml',
         'views/equipment_maintenance_task_views.xml',
-        'views/equipment_maintenance_maintenance_views.xml'
+        'views/equipment_maintenance_menus.xml',
     ],
     # 'assets': {
     #           'web.assets_backend': [
