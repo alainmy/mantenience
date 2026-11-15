@@ -21,6 +21,50 @@
         </field>
     </record>
 
+    <!-- View equipment.maintenance.task Kanban (by Status) -->
+    <record id="view_equipment_maintenance_task_kanban" model="ir.ui.view">
+        <field name="name">view.equipment.maintenance.task.kanban</field>
+        <field name="model">equipment.maintenance.task</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state"
+                    class="o_kanban_small_column o_equipment_maintenance_task_kanban"
+                    quick_create="false"
+                    sample="1">
+                <field name="state"/>
+                <progressbar field="state"
+                             colors='{"draft": "warning", "in_progress": "info", "done": "success", "cancelled": "danger"}'/>
+                <templates>
+                    <t t-name="card">
+                        <main t-att-class="'o_equipment_maintenance_task_card o_task_state_' + record.state.raw_value + (['done', 'cancelled'].includes(record.state.raw_value) ? ' opacity-50' : '')">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <span class="text-muted o_kanban_record_subtitle">
+                                    <field name="sequence"/>
+                                </span>
+                                <field name="state" widget="label_selection"
+                                       options="{'classes': {'draft': 'warning', 'in_progress': 'info', 'done': 'success', 'cancelled': 'danger'}}"/>
+                            </div>
+                            <field name="name" class="fw-bold fs-5"/>
+                            <div class="text-muted d-flex flex-column">
+                                <field name="maintenance_id" options="{'no_open': True}"/>
+                                <field name="equipment_id" options="{'no_open': True}"/>
+                                <field t-if="record.date_task.raw_value" name="date_task"/>
+                            </div>
+                            <footer class="pt-2">
+                                <div class="d-flex align-items-center">
+                                    <field name="hours" class="me-1"/>
+                                    <span>h</span>
+                                </div>
+                                <div class="d-flex ms-auto">
+                                    <field name="responsible_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- View equipment.maintenance.task form -->
     <record id="view_equipment_maintenance_task_form" model="ir.ui.view">
         <field name="name">view.equipment.maintenance.task.form</field>
@@ -90,7 +134,7 @@
         <field name="name">Equipment Maintenance Task</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">equipment.maintenance.task</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">

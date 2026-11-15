@@ -13,6 +13,7 @@ class EquipmentMaintenanceTask(models.Model):
 
     name = fields.Char('Name')
     maintenance_id = fields.Many2one('equipment.maintenance.maintenance', 'Maintenance')
+    sequence = fields.Char('Sequence', related='maintenance_id.sequence', store=True, readonly=True)
     equipment_id = fields.Many2one('equipment.maintenance.equipment', 'Equipment',
                                    related='maintenance_id.equipment_id')
     

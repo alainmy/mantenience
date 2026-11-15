@@ -19,6 +19,7 @@ class EquipmentMaintenanceMaintenance(models.Model):
     hours = fields.Float('Total Hours', compute='_compute_hours', store=True)
     responsible_ids = fields.One2many('res.users', 'id', 'Responsible',
                                       compute='_compute_responsible_ids')
+    task_count = fields.Integer('Task Count', compute='_compute_task_count')
     
     description = fields.Text('Description')
     
@@ -32,6 +33,11 @@ class EquipmentMaintenanceMaintenance(models.Model):
         for record in self:
             record.hours = sum(task.hours for task in record.task_ids)
 
+    @api.depends('task_ids')
+    def _compute_task_count(self):
+        for record in self:
+            record.task_count = len(record.task_ids)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -40,3 +46,14 @@ class EquipmentMaintenanceMaintenance(models.Model):
                     'equipment.maintenance.maintenance'
                 ) or 'New'
         return super().create(vals_list)
+
+    def action_view_tasks(self):
+        """Open the tasks of this maintenance, pre-filled for new tasks."""
+        self.ensure_one()
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            'equipment_maintenance.action_equipment_maintenance_task'
+        )
+        action['domain'] = [('maintenance_id', '=', self.id)]
+        action['context'] = {'default_maintenance_id': self.id}
+        action['display_name'] = self.name
+        return action

@@ -16,11 +16,11 @@
         'views/equipment_maintenance_task_views.xml',
         'views/equipment_maintenance_menus.xml',
     ],
-    # 'assets': {
-    #           'web.assets_backend': [
-    #               'equipment_maintenance/static/src/**/*'
-    #           ],
-    #       },
+    'assets': {
+        'web.assets_backend': [
+            'equipment_maintenance/static/src/scss/equipment_maintenance_kanban.scss',
+        ],
+    },
     'application': True,
     'installable': True,
     'auto_install': False,

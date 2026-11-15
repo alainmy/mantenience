@@ -16,6 +16,42 @@
         </field>
     </record>
 
+    <!-- View equipment.maintenance.maintenance Kanban -->
+    <record id="view_equipment_maintenance_maintenance_kanban" model="ir.ui.view">
+        <field name="name">view.equipment.maintenance.maintenance.kanban</field>
+        <field name="model">equipment.maintenance.maintenance</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column o_equipment_maintenance_maintenance_kanban" sample="1">
+                <field name="task_count"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="text-muted o_kanban_record_subtitle">
+                            <field name="sequence"/>
+                        </div>
+                        <field name="name" class="fw-bold fs-5"/>
+                        <div class="text-muted d-flex flex-column">
+                            <field name="equipment_id" options="{'no_open': True}"/>
+                            <field name="created_by" options="{'no_open': True}"/>
+                        </div>
+                        <footer class="pt-2">
+                            <div class="d-flex align-items-center">
+                                <a class="o_equipment_maintenance_kanban_box" name="action_view_tasks" type="object">
+                                    <span class="fa fa-tasks me-1" title="Tasks"/>
+                                    <field name="task_count"/> Tasks
+                                </a>
+                            </div>
+                            <div class="d-flex ms-auto align-items-center">
+                                <span class="fa fa-clock-o me-1" title="Total Hours"/>
+                                <field name="hours"/>
+                                <span class="ms-1">h</span>
+                            </div>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- View equipment.maintenance.maintenance form -->
     <record id="view_equipment_maintenance_maintenance_form" model="ir.ui.view">
         <field name="name">view.equipment.maintenance.maintenance.form</field>
@@ -91,7 +127,7 @@
         <field name="name">Equipment Maintenance Maintenance</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">equipment.maintenance.maintenance</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">

@@ -1,0 +1,41 @@
+.o_equipment_maintenance_task_kanban,
+.o_equipment_maintenance_maintenance_kanban {
+    .o_kanban_record {
+        transition: box-shadow 0.15s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+    }
+}
+
+.o_equipment_maintenance_task_card {
+    border-left: 3px solid var(--bs-gray-300);
+    padding-left: 0.5rem;
+    margin-left: -0.5rem;
+
+    &.o_task_state_draft {
+        border-left-color: var(--bs-warning);
+    }
+
+    &.o_task_state_in_progress {
+        border-left-color: var(--bs-info);
+    }
+
+    &.o_task_state_done {
+        border-left-color: var(--bs-success);
+    }
+
+    &.o_task_state_cancelled {
+        border-left-color: var(--bs-danger);
+    }
+}
+
+.o_equipment_maintenance_kanban_box {
+    color: var(--bs-body-color);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--bs-primary);
+    }
+}
