@@ -72,6 +72,12 @@
         <field name="arch" type="xml">
             <form string="Equipment Maintenance Task">
                 <header>
+                    <button name="action_start" string="Start" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_done" string="Complete" type="object"
+                            class="btn-primary" invisible="state != 'in_progress'"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state in ('done', 'cancelled')"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="draft,in_progress,done"/>
                 </header>
